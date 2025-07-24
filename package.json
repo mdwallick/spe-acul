@@ -4,16 +4,13 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "node ./scripts/dev-screen.js",
         "screen": "node ./scripts/dev-screen.js",
-        "build": "vite build --watch",
-        "serve": "npx serve -p 4000 --cors dist/",
-        "deploy": "gcloud storage cp -r dist/* gs://acul/acul-demo/",
+        "build": "tsc && vite build --logLevel info",
         "test": "jest",
-        "preview": "vite preview",
+        "lint": "eslint \"src/**/*.{ts,tsx}\" --fix --no-error-on-unmatched-pattern",
         "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,html,css}\" --ignore-unknown",
-        "lint:format": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,html,css}\" --ignore-unknown",
-        "validate:mock-file": "node ./scripts/validate-mock-filenames.js"
+        "validate:mock-file": "node ./scripts/validate-mock-filenames.js",
+        "prepare": "husky"
     },
     "dependencies": {
         "@base-ui-components/react": "^1.0.0-beta.1",
