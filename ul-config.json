@@ -1,0 +1,50 @@
+{
+    "rendering_mode": "advanced",
+    "head_tags": [
+        {
+            "tag": "base",
+            "attributes": {
+                "href": "http://localhost:4000/"
+            }
+        },
+        {
+            "tag": "link",
+            "attributes": {
+                "rel": "stylesheet",
+                "href": "http://localhost:4000/assets/shared/style.DekJqfVb.css"
+            }
+        },
+        {
+            "tag": "script",
+            "attributes": {
+                "src": "http://localhost:4000/assets/main.qnn2_eib.js",
+                "type": "module",
+                "defer": true
+            }
+        },
+        {
+            "tag": "script",
+            "attributes": {
+                "src": "http://localhost:4000/assets/login-id/index.DUBD_cvg.js",
+                "type": "module",
+                "defer": true
+            }
+        },
+        {
+            "tag": "script",
+            "attributes": {
+                "src": "http://localhost:4000/assets/shared/common.CoSaJ0CU.js",
+                "type": "module",
+                "defer": true
+            }
+        },
+        {
+            "tag": "script",
+            "attributes": {
+                "src": "http://localhost:4000/assets/shared/vendor.CBSgJYhX.js",
+                "type": "module",
+                "defer": true
+            }
+        }
+    ]
+}
