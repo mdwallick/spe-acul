@@ -1,8 +1,10 @@
 "use client";
 
-import { Field as FieldPrimitive } from "@base-ui-components/react";
 import * as React from "react";
-import { cn } from "@/lib/utils";
+
+import { Field as FieldPrimitive } from "@base-ui-components/react";
+
+import { cn } from "@/components/lib/utils";
 
 function Label({
   className,

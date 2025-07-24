@@ -1,6 +1,8 @@
-import { cva, VariantProps } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "@/lib/utils";
+
+import { cva, VariantProps } from "class-variance-authority";
+
+import { cn } from "@/components/lib/utils";
 
 const linkVariants = cva(
   "focus-within:ring-ring inline-flex items-center gap-2 rounded-md py-0.5 underline-offset-4 transition-colors focus:ring-3 focus-visible:outline-hidden",

@@ -1,6 +1,8 @@
-import { Avatar as AvatarPrimitive } from "@base-ui-components/react";
 import * as React from "react";
-import { cn } from "@/lib/utils";
+
+import { Avatar as AvatarPrimitive } from "@base-ui-components/react";
+
+import { cn } from "@/components/lib/utils";
 
 function Avatar({
   className,
@@ -47,4 +49,4 @@ function AvatarFallback({
   );
 }
 
-export { Avatar, AvatarImage, AvatarFallback };
+export { Avatar, AvatarFallback, AvatarImage };
