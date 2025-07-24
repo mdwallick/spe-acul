@@ -7,10 +7,9 @@ export const useSignupManager = () => {
     const [signupInstance] = useState(() => new SignupInstance());
 
     const { transaction, screen } = signupInstance;
-    // const { isPasskeyEnabled } = transaction;
 
     // Extract links for consumption by UI components
-    const { loginLink, texts, captchaImage } = screen;
+    const { texts } = screen;
 
     const handleSignup = (formData: SignupManagerData): void => {
         // Build the signup payload with custom fields using the ulp- prefix pattern
@@ -21,14 +20,17 @@ export const useSignupManager = () => {
             // Add custom fields with ulp- prefix for server-side processing
             'ulp-firstName': formData.firstName?.trim() || "",
             'ulp-lastName': formData.lastName?.trim() || "",
-            'ulp-dob-month': formData.dob.month || "",
-            'ulp-dob-day': formData.dob.day || "",
-            'ulp-dob-year': formData.dob.year || "",
+            'ulp-dob': `${formData.dob?.month}-${formData.dob?.day}-${formData.dob?.year}`,
             'ulp-mobile': formData.mobile?.trim() || "",
             'ulp-city': formData.city?.trim() || "",
             'ulp-state': formData.state || "",
             'ulp-zip': formData.zip?.trim() || "",
             'ulp-gender': formData.gender || "",
+            // Communication preferences and legal agreements
+            'ulp-newsletter': formData.newsletter || false,
+            'ulp-marketing': formData.marketing || false,
+            'ulp-financial-incentive': formData.financialIncentive || false,
+            'ulp-terms-agreement': formData.termsAgreement || false,
         };
 
         executeSafely(`Signup with custom fields: ${JSON.stringify(signupPayload)}`, () =>
@@ -53,8 +55,5 @@ export const useSignupManager = () => {
         isCaptchaAvailable: screen.isCaptchaAvailable === true,
         // Derived data
         errors: transaction.errors || [],
-        captchaImage,
-        // Direct links for UI
-        loginLink,
     };
 };

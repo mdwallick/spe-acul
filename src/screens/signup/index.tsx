@@ -6,7 +6,7 @@ import { applyAuth0Theme } from "@/utils/theme";
 import Header from "./components/Header";
 import SignupForm from "./components/SignupForm";
 import AlternativeLogins from "./components/AlternativeLogins";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 const SignupScreen: React.FC = () => {
     const { signupInstance, texts } = useSignupManager();
@@ -22,7 +22,7 @@ const SignupScreen: React.FC = () => {
                 <Header />
                 <AlternativeLogins />
                 <SignupForm />
-                {/* <Footer /> */}
+                <Footer />
             </Card>
         </div>
     );

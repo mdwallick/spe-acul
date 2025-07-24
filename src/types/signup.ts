@@ -13,6 +13,11 @@ export interface SignupFormData {
     gender: string;
     showPassword: boolean;
     captcha?: string;
+    // Communication preferences and legal agreements
+    newsletter?: boolean;
+    marketing?: boolean;
+    financialIncentive?: boolean;
+    termsAgreement?: boolean;
 }
 
 // Type for the data that gets passed to the signup manager
@@ -28,4 +33,9 @@ export interface SignupManagerData {
     state: string;
     zip: string;
     gender: string;
+    // Communication preferences and legal agreements
+    newsletter?: boolean;
+    marketing?: boolean;
+    financialIncentive?: boolean;
+    termsAgreement?: boolean;
 } 
