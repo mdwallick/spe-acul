@@ -1,7 +1,9 @@
 import { useState } from "react";
+
 import SignupInstance from "@auth0/auth0-acul-js/signup";
-import { executeSafely } from "@/utils/helpers/executeSafely";
+
 import type { SignupManagerData } from "@/types/signup";
+import { executeSafely } from "@/utils/helpers/executeSafely";
 
 export const useSignupManager = () => {
     const [signupInstance] = useState(() => new SignupInstance());
@@ -13,28 +15,31 @@ export const useSignupManager = () => {
 
     const handleSignup = (formData: SignupManagerData): void => {
         // Build the signup payload with custom fields using the ulp- prefix pattern
-        const signupPayload: any = {
+        const signupPayload: Record<string, string | boolean> = {
             username: formData.email?.trim() || "",
             password: formData.password?.trim() || "",
-            captcha: screen.isCaptchaAvailable ? formData.captcha?.trim() : undefined,
+            ...(screen.isCaptchaAvailable && formData.captcha ? { captcha: formData.captcha.trim() } : {}),
             // Add custom fields with ulp- prefix for server-side processing
-            'ulp-firstName': formData.firstName?.trim() || "",
-            'ulp-lastName': formData.lastName?.trim() || "",
-            'ulp-dob': `${formData.dob?.month}-${formData.dob?.day}-${formData.dob?.year}`,
-            'ulp-mobile': formData.mobile?.trim() || "",
-            'ulp-city': formData.city?.trim() || "",
-            'ulp-state': formData.state || "",
-            'ulp-zip': formData.zip?.trim() || "",
-            'ulp-gender': formData.gender || "",
+            "ulp-firstName": formData.firstName?.trim() || "",
+            "ulp-lastName": formData.lastName?.trim() || "",
+            "ulp-dob-month": formData.dob.month || "",
+            "ulp-dob-day": formData.dob.day || "",
+            "ulp-dob-year": formData.dob.year || "",
+            "ulp-mobile": formData.mobile?.trim() || "",
+            "ulp-city": formData.city?.trim() || "",
+            "ulp-state": formData.state || "",
+            "ulp-zip": formData.zip?.trim() || "",
+            "ulp-gender": formData.gender || "",
             // Communication preferences and legal agreements
-            'ulp-newsletter': formData.newsletter || false,
-            'ulp-marketing': formData.marketing || false,
-            'ulp-financial-incentive': formData.financialIncentive || false,
-            'ulp-terms-agreement': formData.termsAgreement || false,
+            "ulp-newsletter": formData.newsletter || false,
+            "ulp-marketing": formData.marketing || false,
+            "ulp-financial-incentive": formData.financialIncentive || false,
+            "ulp-terms-agreement": formData.termsAgreement || false,
         };
 
-        executeSafely(`Signup with custom fields: ${JSON.stringify(signupPayload)}`, () =>
-            signupInstance.signup(signupPayload),
+        executeSafely(
+            `Signup with custom fields: ${JSON.stringify(signupPayload)}`,
+            () => signupInstance.signup(signupPayload),
         );
     };
 

@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
-
-import type { SignupFormData } from "@/types/signup";
+// moved from src/screens/signup/components/PasswordField.tsx
+import { useState } from "react";
+import {
+  FieldErrors,
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
 // Eye icons for password visibility toggle
 const EyeIcon = ({ className }: { className?: string }) => (
@@ -42,24 +47,17 @@ const EyeSlashIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-interface PasswordFieldProps {
-  register: UseFormRegister<SignupFormData>;
-  errors: FieldErrors<SignupFormData>;
-  watch: UseFormWatch<SignupFormData>;
-  fieldName: "password" | "confirmPassword";
+interface PasswordFieldProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  errors: FieldErrors<T>;
+  fieldName: Path<T>;
   label: string;
   placeholder?: string;
   autoComplete?: string;
-  validationRules?: {
-    required?: string;
-    minLength?: { value: number; message: string };
-    maxLength?: { value: number; message: string };
-    validate?: (value: string) => boolean | string;
-  };
-  namePrefix?: string;
+  validationRules?: RegisterOptions<T, Path<T>>;
 }
 
-const PasswordField: React.FC<PasswordFieldProps> = ({
+function PasswordField<T extends FieldValues>({
   register,
   errors,
   fieldName,
@@ -67,11 +65,11 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
   placeholder,
   autoComplete = "new-password",
   validationRules,
-}) => {
+}: PasswordFieldProps<T>) {
   const [showPassword, setShowPassword] = useState(false);
 
   // Default validation rules for password field
-  const defaultValidationRules = {
+  const defaultValidationRules: RegisterOptions<T, Path<T>> = {
     required: "Password is required",
     minLength: {
       value: 8,
@@ -84,12 +82,22 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
   };
 
   // Use provided validation rules or defaults
-  const finalValidationRules = validationRules || defaultValidationRules;
+  let finalValidationRules: RegisterOptions<
+    T,
+    Path<T>
+  > = defaultValidationRules;
+  if (validationRules) {
+    finalValidationRules = Object.assign(
+      {},
+      defaultValidationRules,
+      validationRules,
+    );
+  }
 
   return (
     <div className="space-y-2 min-h-[80px]">
       <label
-        htmlFor={fieldName}
+        htmlFor={String(fieldName)}
         className="block text-sm font-medium text-gray-700"
       >
         {label}
@@ -97,7 +105,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
       <div className="relative">
         <input
           {...register(fieldName, finalValidationRules)}
-          id={fieldName}
+          id={String(fieldName)}
           type={showPassword ? "text" : "password"}
           placeholder={placeholder}
           autoComplete={autoComplete}
@@ -117,10 +125,12 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
         </button>
       </div>
       {errors[fieldName]?.message && (
-        <p className="text-sm text-red-600">{errors[fieldName]?.message}</p>
+        <p className="text-sm text-red-600">
+          {String(errors[fieldName]?.message)}
+        </p>
       )}
     </div>
   );
-};
+}
 
 export default PasswordField;

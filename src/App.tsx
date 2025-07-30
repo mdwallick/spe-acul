@@ -1,5 +1,7 @@
-import { useEffect, Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+
 import { getCurrentScreen } from "@auth0/auth0-acul-js";
+
 import { getScreenComponent } from "@/utils/screen/screenLoader";
 
 const App = () => {

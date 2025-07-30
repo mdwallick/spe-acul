@@ -1,9 +1,11 @@
 import React from "react";
-import { useLoginIdManager } from "../hooks/useLoginIdManager";
+
 import { rebaseLinkToCurrentOrigin } from "@/utils/helpers/urlUtils";
 
+import { useLoginManager } from "../hooks/useLoginManager";
+
 const Footer: React.FC = () => {
-  const { isSignupEnabled, signupLink, texts } = useLoginIdManager();
+  const { isSignupEnabled, signupLink, texts } = useLoginManager();
 
   if (!isSignupEnabled) {
     return null;

@@ -1,17 +1,18 @@
 import React from "react";
+
 import {
-  GoogleIcon,
-  TwitterIcon,
-  MicrosoftIcon,
-  PasskeyIcon,
-  DefaultConnectionIcon,
   AppleIcon,
-  LinkedinIcon,
-  SlackIcon,
-  InstagramIcon,
+  DefaultConnectionIcon,
+  DuolingoIcon,
   FacebookIcon,
   GithubIcon,
-  DuolingoIcon,
+  GoogleIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  MicrosoftIcon,
+  PasskeyIcon,
+  SlackIcon,
+  TwitterIcon,
 } from "@/assets/icons";
 
 export const getIcon = (strategy: string): React.ReactNode => {

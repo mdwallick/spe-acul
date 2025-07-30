@@ -1,9 +1,11 @@
 import React from "react";
+
 import Logo from "@/common/Logo";
-import { useLoginIdManager } from "../hooks/useLoginIdManager";
+
+import { useLoginManager } from "../hooks/useLoginManager";
 
 const Header: React.FC = () => {
-  const { texts } = useLoginIdManager();
+  const { texts } = useLoginManager();
 
   // Handle text fallbacks in component
   const logoAltText = texts?.logoAltText || "Application Logo";

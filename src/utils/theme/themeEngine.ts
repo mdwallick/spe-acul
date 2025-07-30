@@ -28,8 +28,8 @@
  */
 
 import {
-  flattenColors,
   flattenBorders,
+  flattenColors,
   flattenFonts,
   flattenPageBackground,
   flattenWidget,

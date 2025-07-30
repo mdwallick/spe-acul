@@ -1,4 +1,4 @@
-import { screen, fireEvent, act } from "@testing-library/react";
+import { act, fireEvent, screen } from "@testing-library/react";
 
 /**
  * Generic test utilities for Auth0 ACUL screens

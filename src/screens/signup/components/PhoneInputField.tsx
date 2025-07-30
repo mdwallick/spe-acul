@@ -1,5 +1,6 @@
 import React from "react";
-import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+
 import type { SignupFormData } from "@/types/signup";
 
 interface PhoneInputFieldProps {
@@ -17,19 +18,22 @@ const PhoneInputField: React.FC<PhoneInputFieldProps> = ({
     fieldName,
     label,
     placeholder,
-    autoComplete = "tel"
+    autoComplete = "tel",
 }) => {
     const validationRules = {
         required: `${label} is required`,
         pattern: {
-            value: /^[\+]?[1-9][\d]{0,15}$/,
+            value: /^[0-9+()-.\s]+$/,
             message: "Please enter a valid phone number",
         },
     };
 
     return (
         <div className="space-y-2 min-h-[80px]">
-            <label htmlFor={fieldName} className="block text-sm font-medium text-gray-700">
+            <label
+                htmlFor={fieldName}
+                className="block text-sm font-medium text-gray-700"
+            >
                 {label}
             </label>
             <input
@@ -47,4 +51,4 @@ const PhoneInputField: React.FC<PhoneInputFieldProps> = ({
     );
 };
 
-export default PhoneInputField; 
+export default PhoneInputField;

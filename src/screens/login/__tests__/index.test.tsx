@@ -1,13 +1,15 @@
-import { render, screen } from "@testing-library/react";
-import LoginIdScreen from "../index";
 import LoginIdInstance from "@auth0/auth0-acul-js/login-id";
-import {
-  ScreenTestUtils,
-  MockConfigUtils,
-} from "@/test/utils/screen-test-utils";
-import { CommonTestData } from "@/test/fixtures/common-data";
+import { render, screen } from "@testing-library/react";
+
 import type { MockLoginIdInstance } from "@/__mocks__/@auth0/auth0-acul-js/login-id";
 import { createMockLoginIdInstance } from "@/__mocks__/@auth0/auth0-acul-js/login-id";
+import { CommonTestData } from "@/test/fixtures/common-data";
+import {
+  MockConfigUtils,
+  ScreenTestUtils,
+} from "@/test/utils/screen-test-utils";
+
+import LoginIdScreen from "../index";
 
 // Mock the Auth0 SDK
 const MockedLoginIdInstance = LoginIdInstance as unknown as jest.Mock;

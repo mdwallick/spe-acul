@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+
 import { loadAndSetMockContext } from "@/utils/screen/mockContextLoader";
+
+import "./index.css";
+
+import App from "./App.tsx";
 
 async function initializeApp() {
   await loadAndSetMockContext();
